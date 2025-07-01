@@ -1,4 +1,5 @@
 // Importa o tipo do modelo do estado do contexto de tarefas (tipagem do `state`)
+import { showMessage } from "../../adapters/showMessage";
 import type { TaskStateModel } from "../../models/TaskStateModel";
 
 // Importa função utilitária para formatar segundos em "MM:SS"
@@ -6,6 +7,7 @@ import { formatSeccondsToMinuts } from "../../utils/formatSeccondsToMinuts";
 
 // Importa função utilitária que determina o próximo ciclo com base no ciclo atual
 import { getNextCycle } from "../../utils/getNextCycle";
+import { initialTaskState } from "./initialTaskState";
 
 // Importa os tipos de ação válidos e o modelo de ação (com e sem payload)
 import { TaskActionTypes, type TaskActionModel } from "./taskActions";
@@ -30,6 +32,7 @@ export const taskReducer = (
       const secondsRemaining = newTask.duration * 60;
 
       // Retorna o novo estado atualizado com a nova tarefa ativa
+
       return {
         ...state, // Mantém o restante do estado inalterado
         activeTask: newTask, // Define a tarefa ativa
@@ -58,9 +61,49 @@ export const taskReducer = (
       };
     }
 
+    case TaskActionTypes.COMPLETE_TASK: {
+      showMessage.dismiss();
+      showMessage.success("Tarefa completada");
+
+      return {
+        ...state, // Mantém o restante do estado inalterado
+        activeTask: null, // Remove a tarefa ativa
+        secondsRemaining: 0, // Zera o tempo restante
+        formattedSecondsRemaining: "00:00", // Zera o formato do tempo
+        tasks: state.tasks.map((task) => {
+          // Verifica se a tarefa sendo iterada é a tarefa que estava ativa
+          if (state.activeTask?.id === task.id) {
+            // Marca a data de interrupção como o timestamp atual
+            return { ...task, completeDate: Date.now() };
+          }
+          return task; // Retorna a tarefa sem alterações se não for a ativa
+        }),
+      };
+    }
+
+    case TaskActionTypes.COUNT_DOWN: {
+      const secondsRemaining = action.payload.secondsRemaining;
+
+      return {
+        ...state, // Mantém o restante do estado inalterado
+        secondsRemaining,
+        formattedSecondsRemaining: formatSeccondsToMinuts(secondsRemaining), // Zera o formato do tempo
+      };
+    }
+
     // Ação para resetar o estado (poderia futuramente voltar ao estado inicial, mas aqui está neutra)
     case TaskActionTypes.RESET_STATE: {
-      return state; // Retorna o estado atual (sem alteração). Pode ser ajustado para retornar o estado inicial.
+      return { ...initialTaskState }; // Retorna o estado atual (sem alteração). Pode ser ajustado para retornar o estado inicial.
+    }
+
+    case TaskActionTypes.CHANGE_OPTIONS: {
+      console.log(action);
+      return {
+        ...state,
+        config: {
+          ...action.payload,
+        },
+      };
     }
   }
 

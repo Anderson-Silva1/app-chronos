@@ -1,8 +1,15 @@
 import GenericHtml from "../components/GenericHtml";
 import Heading from "../components/Heading";
+import RouterLink from "../components/RouterLink";
 import MainTemplate from "./MainTamplate";
+import imagePomodoro from "../../public/pomodoro2.png";
+import { useEffect } from "react";
 
 const About = () => {
+  useEffect(() => {
+    document.title = "Entenda sobre o pomodoro - Chonos Pomodoro";
+  }, []);
+
   return (
     <MainTemplate>
       <GenericHtml>
@@ -14,7 +21,11 @@ const About = () => {
           objetivo é manter o foco total por um período curto e garantir
           descansos para evitar o cansaço mental.
         </p>
-        <img src="https://placehold.co/1920x1080" alt="" />
+        <img
+          src={imagePomodoro}
+          style={{ width: "1920px", height: "auto" }}
+          alt=""
+        />
         <h2>Como funciona o Pomodoro tradicional?</h2>
         <ul>
           <li>
@@ -42,8 +53,8 @@ const About = () => {
         <p>
           Você pode configurar o tempo de foco, descanso curto e descanso longo
           do jeito que quiser! Basta acessar a{" "}
-          <a href="/settings">página de configurações</a> e ajustar os minutos
-          como preferir.
+          <RouterLink href="/settings">página de configurações</RouterLink> e
+          ajustar os minutos como preferir.
         </p>
         <h3>🔁 Ciclos organizados em sequência</h3>
         <p>
@@ -96,8 +107,8 @@ const About = () => {
         </ul>
         <p>
           <strong>Pronto pra focar?</strong> Bora lá{" "}
-          <a href="/">voltar para a página inicial</a> e iniciar seus Pomodoros!
-          🍅🚀
+          <RouterLink href="/">voltar para a página inicial</RouterLink> e
+          iniciar seus Pomodoros! 🍅🚀
         </p>
         <p>
           <em>"Foco total, sem pressa, sem pausa, só vai!"</em> 💪🧘‍♂️

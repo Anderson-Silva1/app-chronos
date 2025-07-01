@@ -1,0 +1,44 @@
+.responsiveTable {
+  /* background-color: crimson; */
+  /* min-width: auto;
+  margin: 0;
+  padding: 1rem; */
+
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+
+  overflow-x: auto;
+  border-radius: 0.8rem;
+}
+
+.responsiveTable table {
+  width: 100%;
+  min-width: 64rem;
+  font-size: 1.6rem;
+  border-collapse: collapse;
+}
+
+.responsiveTable table th,
+.responsiveTable table td {
+  border-bottom: 0.2rem solid var(--gray-700);
+  text-align: left;
+  padding: 1.6rem;
+}
+
+.responsiveTable table th {
+  background-color: var(--gray-600);
+}
+
+.thSort {
+  cursor: pointer;
+}
+
+.thSort:hover {
+  opacity: 0.8;
+  transition: all 0.5s;
+}
+
+.responsiveTable table td {
+  background-color: var(--gray-800);
+}

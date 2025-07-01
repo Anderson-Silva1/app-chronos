@@ -1,0 +1,23 @@
+.buttonTable {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-width: 24rem; */
+  padding: 1rem;
+  border-radius: 0.8rem;
+  margin: 3.2rem 0;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  background-color: var(--error);
+  color: var(--text-hover-error);
+}
+
+.buttonTable:hover {
+  filter: brightness(80%);
+}
+
+.buttonTable svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}

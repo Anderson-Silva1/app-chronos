@@ -25,7 +25,7 @@ import useTaskContext from "../contexts/TaskContext/useTaskContext";
 // Função utilitária para calcular o próximo ciclo (ex: de 3 pra 4)
 import { getNextCycle } from "../utils/getNextCycle";
 
-// Função que define o tipo do próximo ciclo (workTime, breakTime etc.)
+// Função que define o tipo do próximo ciclo (workTime, breakTime e longBreakTime.)
 import { getCurrentCycle } from "../utils/getCurrentCycle";
 
 // Ícones que serão usados nos botões
@@ -36,6 +36,8 @@ import { TaskActionTypes } from "../contexts/TaskContext/taskActions";
 
 // Componente que mostra dicas com base no ciclo atual/seguinte
 import Tips from "./Tips";
+
+import { showMessage } from "../adapters/showMessage";
 
 const Form = () => {
   // Hook personalizado que retorna o estado global e o dispatcher de ações
@@ -50,7 +52,11 @@ const Form = () => {
   // Cria uma referência para o input de nome da task
   const taskNameRef = useRef<HTMLInputElement>(null);
 
+  const stateTasksLength = state.tasks?.length || 0;
+  const lastTaskName = state.tasks?.[stateTasksLength - 1]?.name || "";
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    showMessage.dismiss();
     // Previne o comportamento padrão do form (recarregar a página)
     event.preventDefault();
 
@@ -62,7 +68,7 @@ const Form = () => {
 
     // Verifica se o campo está vazio e alerta o usuário
     if (!taskName) {
-      alert("Digite algo no input");
+      showMessage.warn("Digite algo no campo de texto");
       return;
     }
 
@@ -79,6 +85,8 @@ const Form = () => {
 
     // Dispara a ação START_TASK para o reducer, ativando o ciclo e armazenando a task
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+
+    showMessage.success("Tarefa iniciada");
   };
 
   const handleInterruptedTask = (
@@ -89,6 +97,8 @@ const Form = () => {
 
     // Dispara a ação de interrupção da tarefa atual
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
+    showMessage.dismiss();
+    showMessage.error("Terefa interrompida");
   };
 
   return (
@@ -103,6 +113,7 @@ const Form = () => {
             placeholder="Digite Algo"
             ref={taskNameRef}
             disabled={!!state.activeTask} // Desativa se já tiver uma task ativa
+            defaultValue={lastTaskName}
           />
         </div>
 
