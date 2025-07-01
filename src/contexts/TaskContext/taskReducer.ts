@@ -10,7 +10,7 @@ import { getNextCycle } from "../../utils/getNextCycle";
 import { initialTaskState } from "./initialTaskState";
 
 // Importa os tipos de ação válidos e o modelo de ação (com e sem payload)
-import { TaskActionTypes, type TaskActionModel } from "./taskActions";
+import { TASK_ACTION_TYPES, type TaskActionModel } from "./taskActions";
 
 // Define o reducer principal que controla toda a lógica de atualização do estado
 // Recebe o estado atual e uma ação (com tipo e possivelmente payload)
@@ -22,7 +22,7 @@ export const taskReducer = (
   // Estrutura de controle que escolhe qual lógica aplicar com base no tipo da ação
   switch (action.type) {
     // Ação para iniciar uma nova tarefa (foco ou pausa)
-    case TaskActionTypes.START_TASK: {
+    case TASK_ACTION_TYPES.START_TASK: {
       const newTask = action.payload; // Nova tarefa recebida no payload
 
       // Calcula o próximo tipo de ciclo baseado no ciclo atual (ex: de foco para pausa)
@@ -44,7 +44,7 @@ export const taskReducer = (
     }
 
     // Ação para interromper a tarefa ativa
-    case TaskActionTypes.INTERRUPT_TASK: {
+    case TASK_ACTION_TYPES.INTERRUPT_TASK: {
       return {
         ...state, // Mantém o restante do estado inalterado
         activeTask: null, // Remove a tarefa ativa
@@ -61,7 +61,7 @@ export const taskReducer = (
       };
     }
 
-    case TaskActionTypes.COMPLETE_TASK: {
+    case TASK_ACTION_TYPES.COMPLETE_TASK: {
       showMessage.dismiss();
       showMessage.success("Tarefa completada");
 
@@ -81,7 +81,7 @@ export const taskReducer = (
       };
     }
 
-    case TaskActionTypes.COUNT_DOWN: {
+    case TASK_ACTION_TYPES.COUNT_DOWN: {
       const secondsRemaining = action.payload.secondsRemaining;
 
       return {
@@ -92,11 +92,11 @@ export const taskReducer = (
     }
 
     // Ação para resetar o estado (poderia futuramente voltar ao estado inicial, mas aqui está neutra)
-    case TaskActionTypes.RESET_STATE: {
+    case TASK_ACTION_TYPES.RESET_STATE: {
       return { ...initialTaskState }; // Retorna o estado atual (sem alteração). Pode ser ajustado para retornar o estado inicial.
     }
 
-    case TaskActionTypes.CHANGE_OPTIONS: {
+    case TASK_ACTION_TYPES.CHANGE_SETTINGS: {
       console.log(action);
       return {
         ...state,

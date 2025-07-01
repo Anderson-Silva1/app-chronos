@@ -2,7 +2,6 @@ import GenericHtml from "../components/GenericHtml";
 import Heading from "../components/Heading";
 import RouterLink from "../components/RouterLink";
 import MainTemplate from "./MainTamplate";
-import imagePomodoro from "../../public/pomodoro2.png";
 import { useEffect } from "react";
 
 const About = () => {
@@ -21,11 +20,7 @@ const About = () => {
           objetivo é manter o foco total por um período curto e garantir
           descansos para evitar o cansaço mental.
         </p>
-        <img
-          src={imagePomodoro}
-          style={{ width: "1920px", height: "auto" }}
-          alt=""
-        />
+
         <h2>Como funciona o Pomodoro tradicional?</h2>
         <ul>
           <li>

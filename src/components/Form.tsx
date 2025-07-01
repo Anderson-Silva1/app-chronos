@@ -32,7 +32,7 @@ import { getCurrentCycle } from "../utils/getCurrentCycle";
 import { CircleStopIcon, PlayIcon } from "lucide-react";
 
 // Enum com os tipos de ações possíveis no reducer
-import { TaskActionTypes } from "../contexts/TaskContext/taskActions";
+import { TASK_ACTION_TYPES } from "../contexts/TaskContext/taskActions";
 
 // Componente que mostra dicas com base no ciclo atual/seguinte
 import Tips from "./Tips";
@@ -84,7 +84,7 @@ const Form = () => {
     };
 
     // Dispara a ação START_TASK para o reducer, ativando o ciclo e armazenando a task
-    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+    dispatch({ type: TASK_ACTION_TYPES.START_TASK, payload: newTask });
 
     showMessage.success("Tarefa iniciada");
   };
@@ -96,7 +96,7 @@ const Form = () => {
     e.preventDefault();
 
     // Dispara a ação de interrupção da tarefa atual
-    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
+    dispatch({ type: TASK_ACTION_TYPES.INTERRUPT_TASK });
     showMessage.dismiss();
     showMessage.error("Terefa interrompida");
   };

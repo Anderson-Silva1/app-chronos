@@ -10,7 +10,7 @@ import { TaskContext } from "../contexts/TaskContext";
 // Importa a função reducer responsável por atualizar o estado com base nas ações disparadas
 import { taskReducer } from "../contexts/TaskContext/taskReducer";
 import { TimerWorkerManager } from "../workers/timerWorckerManager";
-import { TaskActionTypes } from "../contexts/TaskContext/taskActions";
+import { TASK_ACTION_TYPES } from "../contexts/TaskContext/taskActions";
 import { loadBeep } from "../utils/loadBeep";
 
 // Define a interface que tipa a prop `children` recebida pelo componente (padrão em Providers)
@@ -28,7 +28,7 @@ const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
 
     if (storageState === null) return initialTaskState;
 
-    console.log(JSON.parse(storageState));
+    // console.log(JSON.parse(storageState));
 
     const parsedStorageState = JSON.parse(storageState);
 
@@ -54,11 +54,11 @@ const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
         playAudioRef.current = null;
       }
 
-      dispatch({ type: TaskActionTypes.COMPLETE_TASK });
+      dispatch({ type: TASK_ACTION_TYPES.COMPLETE_TASK });
       worker.terminate();
     } else {
       dispatch({
-        type: TaskActionTypes.COUNT_DOWN,
+        type: TASK_ACTION_TYPES.COUNT_DOWN,
         payload: { secondsRemaining: e.data },
       });
     }

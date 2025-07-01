@@ -4,7 +4,7 @@ import ButtonConfig from "./ButtonConfig";
 import Input from "./Input";
 import { useState } from "react";
 import useTaskContext from "../contexts/TaskContext/useTaskContext";
-import { TaskActionTypes } from "../contexts/TaskContext/taskActions";
+import { TASK_ACTION_TYPES } from "../contexts/TaskContext/taskActions";
 import { showMessage } from "../adapters/showMessage";
 
 type configType = {
@@ -53,7 +53,7 @@ const FormConfig = () => {
     if (!confirm("Tem certeza que quer mudar a configuração de tempo?")) return;
 
     dispatch({
-      type: TaskActionTypes.CHANGE_OPTIONS,
+      type: TASK_ACTION_TYPES.CHANGE_SETTINGS,
       payload: config,
     });
 

@@ -1,48 +1,49 @@
-// Importa apenas o tipo do modelo de uma tarefa, usado no payload das ações
+// useReducer <- hook do React que recebe um reducer e um estado inicial
+// reducer <- função que recebe o estado atual e uma ação, e retorna o novo estado
+// state <- o estado atual
+// action <- a ação disparada, geralmente é um objeto com type e (opcionalmente) payload
+// type <- o tipo da ação, geralmente uma string (pode ser enum, constante, etc)
+// payload <- os dados extras enviados junto com a action, se necessário para atualizar o estado
+
 import type { TaskModel } from "../../models/TaskModel";
 import type { TaskStateModel } from "../../models/TaskStateModel";
 
-// Define um enum para representar os tipos possíveis de ações no contexto de tarefas
-// Esse enum torna o código mais legível, seguro e ajuda a evitar erros de digitação em strings
-export enum TaskActionTypes {
-  START_TASK = "START_TASK", // Ação para iniciar uma nova tarefa
-  INTERRUPT_TASK = "INTERRUPT_TASK", // Ação para interromper a tarefa atual
-  RESET_STATE = "RESET_STATE", // Ação para resetar o estado para o valor inicial
-  COUNT_DOWN = "COUNT_DOWN", // Ação para resetar o estado para o valor inicial
-  COMPLETE_TASK = "COMPLETE_TASK", // Ação para resetar o estado para o valor inicial
-  CHANGE_OPTIONS = "CHANGE_OPTIONS",
-}
+export const TASK_ACTION_TYPES = {
+  START_TASK: "START_TASK",
+  INTERRUPT_TASK: "INTERRUPT_TASK",
+  RESET_STATE: "RESET_STATE",
+  COUNT_DOWN: "COUNT_DOWN",
+  COMPLETE_TASK: "COMPLETE_TASK",
+  CHANGE_SETTINGS: "CHANGE_SETTINGS",
+} as const;
 
-// Define o tipo das ações que carregam um payload (no caso, iniciar uma tarefa)
-// Aqui usamos `START_TASK` e fornecemos um objeto do tipo `TaskModel` como dado adicional
-export type TaskActionsWithPayload =
+export type TaskActionTypes = keyof typeof TASK_ACTION_TYPES;
+
+type TaskActionsWithPayload =
   | {
-      type: TaskActionTypes.START_TASK; // Identifica o tipo da ação
-      payload: TaskModel; // Payload com os dados da nova tarefa a ser iniciada
+      type: typeof TASK_ACTION_TYPES.START_TASK;
+      payload: TaskModel;
     }
   | {
-      type: TaskActionTypes.COUNT_DOWN; // Identifica o tipo da ação
+      type: typeof TASK_ACTION_TYPES.COUNT_DOWN;
       payload: { secondsRemaining: number };
     }
   | {
-      type: TaskActionTypes.CHANGE_OPTIONS; // Identifica o tipo da ação
+      type: typeof TASK_ACTION_TYPES.CHANGE_SETTINGS;
       payload: TaskStateModel["config"];
     };
 
-// Define as ações que **não** carregam payloads, ou seja, são simples comandos
-export type TaskActionsWithoutPayload =
+type TaskActionsWithoutPayload =
   | {
-      type: TaskActionTypes.RESET_STATE; // Ação para resetar todo o estado do contexto
+      type: typeof TASK_ACTION_TYPES.RESET_STATE;
     }
   | {
-      type: TaskActionTypes.INTERRUPT_TASK; // Ação para interromper a tarefa ativa
+      type: typeof TASK_ACTION_TYPES.INTERRUPT_TASK;
     }
   | {
-      type: TaskActionTypes.COMPLETE_TASK; // Ação para interromper a tarefa ativa
+      type: typeof TASK_ACTION_TYPES.COMPLETE_TASK;
     };
 
-// Une os dois tipos de ações (com e sem payload) em um único tipo que o reducer pode aceitar
-// Essa união permite que o `dispatch` trabalhe de forma segura com qualquer uma das ações definidas
 export type TaskActionModel =
   | TaskActionsWithPayload
   | TaskActionsWithoutPayload;
