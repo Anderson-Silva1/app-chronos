@@ -1,54 +1,146 @@
-# React + TypeScript + Vite
+# ⏳ Chronos - Pomodoro Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Chronos](./public/preview.png)
 
-Currently, two official plugins are available:
+## 📌 Sobre o projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O **Chronos** é uma aplicação web de produtividade baseada na técnica
+**Pomodoro**, criada para auxiliar usuários a manterem foco, organização
+e gerenciamento eficiente do tempo.
 
-## Expanding the ESLint configuration
+A aplicação permite controlar ciclos de concentração e pausas através de
+um temporizador intuitivo, oferecendo uma experiência simples,
+responsiva e agradável.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Este projeto foi desenvolvido com foco em prática de desenvolvimento
+Front-end moderno, aplicando conceitos de componentização, tipagem,
+organização de código e experiência do usuário.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+------------------------------------------------------------------------
+
+## 🚀 Tecnologias utilizadas
+
+-   ⚛️ **React**
+-   🔷 **TypeScript**
+-   ⚡ **Vite**
+-   🧭 **React Router DOM**
+-   📝 **React Hook Form**
+-   🔔 **React Toastify**
+-   🎨 **CSS**
+
+------------------------------------------------------------------------
+
+## ✨ Funcionalidades
+
+-   ⏱️ Temporizador Pomodoro
+-   ▶️ Iniciar, pausar e reiniciar sessões
+-   🔄 Controle de ciclos de foco e pausa
+-   🧭 Navegação entre páginas
+-   📝 Gerenciamento de formulários
+-   🔔 Feedback visual através de notificações
+-   📱 Interface responsiva
+
+------------------------------------------------------------------------
+
+## 🧠 Conceitos aplicados
+
+-   Componentização com React
+-   Criação de componentes reutilizáveis
+-   Gerenciamento de estado
+-   Tipagem com TypeScript
+-   Hooks do React
+-   Rotas com React Router
+-   Validação e controle de formulários
+-   Organização de projetos Front-end
+-   Deploy de aplicação web
+
+------------------------------------------------------------------------
+
+## 📂 Estrutura do projeto
+
+``` bash
+src/
+├── components/
+├── pages/
+├── routes/
+├── hooks/
+├── assets/
+├── styles/
+├── utils/
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+------------------------------------------------------------------------
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Como executar
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Clone o projeto:
+
+``` bash
+git clone https://github.com/seu-usuario/chronos-pomodoro-react.git
 ```
+
+Entre na pasta:
+
+``` bash
+cd chronos-pomodoro-react
+```
+
+Instale as dependências:
+
+``` bash
+npm install
+```
+
+Execute:
+
+``` bash
+npm run dev
+```
+
+A aplicação estará disponível em:
+
+``` bash
+http://localhost:5173
+```
+
+------------------------------------------------------------------------
+
+## 🌐 Deploy
+
+Projeto publicado:
+
+https://app-chronos-eight.vercel.app/
+
+------------------------------------------------------------------------
+
+## 📈 Próximas melhorias
+
+-   [ ] Metas diárias de produtividade
+-   [ ] Estatísticas de foco
+-   [ ] Persistência de dados
+-   [ ] Sons e alertas personalizados
+
+------------------------------------------------------------------------
+
+## 👨‍💻 Autor
+
+**Anderson Valentim**
+
+Desenvolvedor Front-end em formação, focado em criar aplicações web
+modernas, responsivas e funcionais.
+
+Conhecimentos em evolução:
+
+-   React
+-   TypeScript
+-   JavaScript
+-   Desenvolvimento de interfaces
+-   Boas práticas de programação
+
+Buscando evoluir constantemente na área de tecnologia e transformar
+ideias em soluções digitais.
+
+------------------------------------------------------------------------
+
+⭐ Se gostou do projeto, deixe uma estrela no repositório!
