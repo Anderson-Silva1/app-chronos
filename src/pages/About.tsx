@@ -48,7 +48,7 @@ const About = () => {
         <p>
           Você pode configurar o tempo de foco, descanso curto e descanso longo
           do jeito que quiser! Basta acessar a{" "}
-          <RouterLink href="/settings">página de configurações</RouterLink> e
+          <RouterLink href="/config">página de configurações</RouterLink> e
           ajustar os minutos como preferir.
         </p>
         <h3>🔁 Ciclos organizados em sequência</h3>
